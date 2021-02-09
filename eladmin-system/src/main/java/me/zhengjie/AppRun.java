@@ -15,6 +15,7 @@
  */
 package me.zhengjie;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import io.swagger.annotations.Api;
 import me.zhengjie.annotation.rest.AnonymousGetMapping;
 import me.zhengjie.utils.SpringContextHolder;
@@ -27,6 +28,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.persistence.EntityManager;
 
 /**
  * 开启审计功能 -> @EnableJpaAuditing
@@ -57,7 +60,10 @@ public class AppRun {
         fa.addConnectorCustomizers(connector -> connector.setProperty("relaxedQueryChars", "[]{}"));
         return fa;
     }
-
+    @Bean
+    public JPAQueryFactory jpaQueryFactory(EntityManager entityManager) {
+        return new JPAQueryFactory(entityManager);
+    }
     /**
      * 访问首页提示
      *
