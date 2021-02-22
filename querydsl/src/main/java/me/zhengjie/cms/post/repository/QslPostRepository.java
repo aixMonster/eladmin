@@ -13,9 +13,9 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.cms.author.repository;
+package me.zhengjie.cms.post.repository;
 
-import me.zhengjie.cms.author.domain.QslAuthor;
+import me.zhengjie.cms.post.domain.QslPost;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -23,7 +23,7 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 /**
 * @website https://el-admin.vip
 * @author ray
-* @date 2021-02-05
+* @date 2021-02-22
 **/
-public interface QslAuthorRepository extends JpaRepository<QslAuthor, Long>, JpaSpecificationExecutor<QslAuthor>, QuerydslPredicateExecutor<QslAuthor> {
+public interface QslPostRepository extends JpaRepository<QslPost, Long>, JpaSpecificationExecutor<QslPost>, QuerydslPredicateExecutor<QslPost> {
 }

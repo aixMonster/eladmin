@@ -13,17 +13,20 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.cms.author.repository;
+package me.zhengjie.cms.post.service.mapstruct;
 
-import me.zhengjie.cms.author.domain.QslAuthor;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import me.zhengjie.base.BaseMapper;
+import me.zhengjie.cms.post.domain.QslPost;
+import me.zhengjie.cms.post.service.dto.QslPostDto;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
 /**
 * @website https://el-admin.vip
 * @author ray
-* @date 2021-02-05
+* @date 2021-02-22
 **/
-public interface QslAuthorRepository extends JpaRepository<QslAuthor, Long>, JpaSpecificationExecutor<QslAuthor>, QuerydslPredicateExecutor<QslAuthor> {
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+public interface QslPostMapper extends BaseMapper<QslPostDto, QslPost> {
+
 }

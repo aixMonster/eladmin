@@ -40,6 +40,7 @@
     </properties>
 
     <dependencies>
+<!--        querydsl-->
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-apt</artifactId>
@@ -49,6 +50,30 @@
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-jpa</artifactId>
+        </dependency>
+<!--        rsql jpa-->
+        <dependency>
+            <groupId>io.github.perplexhub</groupId>
+            <artifactId>rsql-jpa-spring-boot-starter</artifactId>
+            <version>5.0.9</version>
+        </dependency>
+<!--        rsql querydsl-->
+        <dependency>
+            <groupId>io.github.perplexhub</groupId>
+            <artifactId>rsql-querydsl-spring-boot-starter</artifactId>
+            <version>5.0.9</version>
+        </dependency>
+<!--        json字段映射支持-->
+        <dependency>
+            <groupId>com.vladmihalcea</groupId>
+            <artifactId>hibernate-types-52</artifactId>
+            <version>2.9.5</version>
+        </dependency>
+<!--        easyexcel -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.2.7</version>
         </dependency>
         <!--Spring boot 核心-->
         <dependency>
@@ -234,7 +259,7 @@
                             <goal>process</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>target/generated-sources</outputDirectory>
+                            <outputDirectory>target/generated-sources/apt</outputDirectory>
                             <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
                         </configuration>
                     </execution>

@@ -13,39 +13,34 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.cms.author.domain;
+package me.zhengjie.cms.post.domain;
 
-import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
 import me.zhengjie.base.BaseEntity;
-import me.zhengjie.cms.post.domain.QslPost;
+import me.zhengjie.cms.author.domain.QslAuthor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.sql.Timestamp;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 
 /**
 * @website https://el-admin.vip
 * @description /
 * @author ray
-* @date 2021-02-05
+* @date 2021-02-22
 **/
 @Entity
 @Data
-@Table(name="qsl_author")
 @DynamicInsert
 @DynamicUpdate
-@TypeDef(name = "json", typeClass = JsonStringType.class)
-public class QslAuthor extends BaseEntity implements Serializable {
+@Table(name="qsl_post")
+public class QslPost extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,20 +48,20 @@ public class QslAuthor extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "ID")
     private Long id;
 
-    @Column(name = "name",nullable = false)
-    @NotBlank
-    @ApiModelProperty(value = "姓名")
-    private String name;
+    @Column(name = "title")
+    @ApiModelProperty(value = "标题")
+    private String title;
 
-    @Column(name = "age",nullable = false)
-    @NotNull
-    @ApiModelProperty(value = "年龄")
-    private Integer age;
+    @Column(name = "content")
+    @ApiModelProperty(value = "内容")
+    private String content;
 
-    @OneToMany(mappedBy = "qslAuthor", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<QslPost> qslPostList;
+    @ApiModelProperty(value = "作者")
+    @JoinColumn(name = "author_id")
+    @ManyToOne
+    private QslAuthor qslAuthor;
 
-    public void copy(QslAuthor source){
+    public void copy(QslPost source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
     }
 }

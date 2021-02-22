@@ -13,17 +13,25 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.cms.author.repository;
+package me.zhengjie.cms.post.service.dto;
 
-import me.zhengjie.cms.author.domain.QslAuthor;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import lombok.Data;
+import java.util.List;
+import me.zhengjie.annotation.Query;
 
 /**
 * @website https://el-admin.vip
 * @author ray
-* @date 2021-02-05
+* @date 2021-02-22
 **/
-public interface QslAuthorRepository extends JpaRepository<QslAuthor, Long>, JpaSpecificationExecutor<QslAuthor>, QuerydslPredicateExecutor<QslAuthor> {
+@Data
+public class QslPostQueryCriteria{
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String title;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String content;
 }

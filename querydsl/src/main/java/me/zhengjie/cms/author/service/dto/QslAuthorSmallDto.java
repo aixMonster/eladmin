@@ -13,17 +13,31 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.cms.author.repository;
+package me.zhengjie.cms.author.service.dto;
 
-import me.zhengjie.cms.author.domain.QslAuthor;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import lombok.Data;
+import me.zhengjie.base.BaseDTO;
+import me.zhengjie.cms.post.service.dto.QslPostDto;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.List;
 
 /**
 * @website https://el-admin.vip
+* @description /
 * @author ray
 * @date 2021-02-05
 **/
-public interface QslAuthorRepository extends JpaRepository<QslAuthor, Long>, JpaSpecificationExecutor<QslAuthor>, QuerydslPredicateExecutor<QslAuthor> {
+@Data
+public class QslAuthorSmallDto extends BaseDTO implements Serializable {
+
+    /** ID */
+    private Long id;
+
+    /** 姓名 */
+    private String name;
+
+    /** 年龄 */
+    private Integer age;
 }

@@ -16,7 +16,10 @@
 package me.zhengjie.cms.author.rest;
 
 import com.querydsl.core.types.Predicate;
+import io.github.perplexhub.rsql.RSQLCommonSupport;
+import io.github.perplexhub.rsql.RSQLQueryDslSupport;
 import me.zhengjie.annotation.Log;
+import me.zhengjie.cms.author.domain.QQslAuthor;
 import me.zhengjie.cms.author.domain.QslAuthor;
 import me.zhengjie.cms.author.service.QslAuthorService;
 import me.zhengjie.cms.author.service.dto.QslAuthorQueryCriteria;
@@ -58,9 +61,13 @@ public class QslAuthorController {
     @Log("查询内容管理系统：作者管理")
     @ApiOperation("查询内容管理系统：作者管理")
     @PreAuthorize("@el.check('qslAuthor:list')")
-    public ResponseEntity<Object> query(@QuerydslPredicate(root = QslAuthor.class) Predicate predicate, Pageable pageable){
+//    public ResponseEntity<Object> query(@QuerydslPredicate(root = QslAuthor.class) Predicate predicate, Pageable pageable){
+//        QslAuthorQueryCriteria criteria = new QslAuthorQueryCriteria();
+//        return new ResponseEntity<>(qslAuthorService.queryAll(criteria, predicate, pageable),HttpStatus.OK);
+//    }
+    public ResponseEntity<Object> query(@RequestParam(required = false) String filter, Pageable pageable){
         QslAuthorQueryCriteria criteria = new QslAuthorQueryCriteria();
-        return new ResponseEntity<>(qslAuthorService.queryAll(criteria, predicate, pageable),HttpStatus.OK);
+        return new ResponseEntity<>(qslAuthorService.queryAll(criteria, RSQLQueryDslSupport.toPredicate(filter, QQslAuthor.qslAuthor), pageable),HttpStatus.OK);
     }
 
     @PostMapping
