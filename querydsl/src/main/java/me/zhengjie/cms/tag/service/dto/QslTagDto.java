@@ -13,39 +13,26 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.cms.post.service.dto;
+package me.zhengjie.cms.tag.service.dto;
 
 import lombok.Data;
-import me.zhengjie.cms.author.service.dto.QslAuthorDto;
-import me.zhengjie.cms.author.service.dto.QslAuthorSmallDto;
-import me.zhengjie.cms.tag.domain.QslTag;
-
 import java.sql.Timestamp;
 import java.io.Serializable;
-import java.util.List;
 
 /**
 * @website https://el-admin.vip
 * @description /
 * @author ray
-* @date 2021-02-22
+* @date 2021-02-24
 **/
 @Data
-public class QslPostDto implements Serializable {
+public class QslTagDto implements Serializable {
 
     /** ID */
     private Long id;
 
-    /** 标题 */
-    private String title;
-
-    /** 内容 */
-    private String content;
-
-    /** 作者 */
-    private QslAuthorSmallDto qslAuthor;
-    /** 标签 */
-    private List<QslTag> qslTags;
+    /** 标签名 */
+    private String name;
 
     /** 创建者 */
     private String createBy;

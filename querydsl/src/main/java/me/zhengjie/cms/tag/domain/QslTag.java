@@ -13,17 +13,15 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.cms.post.domain;
+package me.zhengjie.cms.tag.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
 import me.zhengjie.base.BaseEntity;
-import me.zhengjie.cms.author.domain.QslAuthor;
-import me.zhengjie.cms.tag.domain.QslTag;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
+import me.zhengjie.cms.post.domain.QslPost;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -35,14 +33,12 @@ import java.util.List;
 * @website https://el-admin.vip
 * @description /
 * @author ray
-* @date 2021-02-22
+* @date 2021-02-24
 **/
 @Entity
 @Data
-@DynamicInsert
-@DynamicUpdate
-@Table(name="qsl_post")
-public class QslPost extends BaseEntity implements Serializable {
+@Table(name="qsl_tag")
+public class QslTag extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,26 +46,16 @@ public class QslPost extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "ID")
     private Long id;
 
-    @Column(name = "title")
-    @ApiModelProperty(value = "标题")
-    private String title;
+    @Column(name = "name")
+    @ApiModelProperty(value = "标签名")
+    private String name;
 
-    @Column(name = "content")
-    @ApiModelProperty(value = "内容")
-    private String content;
+    @ApiModelProperty(value = "内容", hidden = true)
+    @JSONField(serialize = false)
+    @ManyToMany(mappedBy = "qslTags")
+    private List<QslPost> qslPosts;
 
-    @ApiModelProperty(value = "作者")
-    @JoinColumn(name = "author_id")
-    @ManyToOne
-    private QslAuthor qslAuthor;
-
-    @ApiModelProperty(value = "标签")
-    @ManyToMany
-    @JoinTable(name = "qsl_post_tag", joinColumns = {@JoinColumn(name = "post_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")} )
-    private List<QslTag> qslTags;
-
-    public void copy(QslPost source){
+    public void copy(QslTag source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
     }
 }
