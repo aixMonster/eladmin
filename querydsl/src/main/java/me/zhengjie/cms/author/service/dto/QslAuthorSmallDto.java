@@ -30,14 +30,8 @@ import java.util.List;
 * @date 2021-02-05
 **/
 @Data
-public class QslAuthorSmallDto extends BaseDTO implements Serializable {
-
+public class QslAuthorSmallDto  implements Serializable {
     /** ID */
     private Long id;
-
-    /** 姓名 */
     private String name;
-
-    /** 年龄 */
-    private Integer age;
 }

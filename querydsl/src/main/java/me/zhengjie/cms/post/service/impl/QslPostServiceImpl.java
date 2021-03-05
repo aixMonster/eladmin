@@ -100,7 +100,7 @@ public class QslPostServiceImpl implements QslPostService {
             Map<String,Object> map = new LinkedHashMap<>();
             map.put("标题", qslPost.getTitle());
             map.put("内容", qslPost.getContent());
-            map.put("作者", qslPost.getQslAuthor().getName());
+            map.put("作者", qslPost.getQslAuthor().getId());
             map.put("创建者", qslPost.getCreateBy());
             map.put("更新者", qslPost.getUpdateBy());
             map.put("创建日期", qslPost.getCreateTime());

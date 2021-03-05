@@ -15,10 +15,14 @@
 */
 package me.zhengjie.cms.post.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
 import me.zhengjie.cms.author.domain.QslAuthor;
 import me.zhengjie.cms.tag.domain.QslTag;
@@ -38,7 +42,9 @@ import java.util.List;
 * @date 2021-02-22
 **/
 @Entity
-@Data
+@Setter
+@Getter
+@EqualsAndHashCode
 @DynamicInsert
 @DynamicUpdate
 @Table(name="qsl_post")
@@ -60,7 +66,7 @@ public class QslPost extends BaseEntity implements Serializable {
 
     @ApiModelProperty(value = "作者")
     @JoinColumn(name = "author_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private QslAuthor qslAuthor;
 
     @ApiModelProperty(value = "标签")

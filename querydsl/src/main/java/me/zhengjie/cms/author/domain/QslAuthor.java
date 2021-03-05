@@ -15,11 +15,15 @@
 */
 package me.zhengjie.cms.author.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
 import me.zhengjie.cms.post.domain.QslPost;
 import org.hibernate.annotations.DynamicInsert;
@@ -40,7 +44,9 @@ import java.util.Set;
 * @date 2021-02-05
 **/
 @Entity
-@Data
+@Setter
+@Getter
+@EqualsAndHashCode
 @Table(name="qsl_author")
 @DynamicInsert
 @DynamicUpdate
@@ -63,7 +69,8 @@ public class QslAuthor extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "年龄")
     private Integer age;
 
-    @OneToMany(mappedBy = "qslAuthor", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JSONField(serialize = false)
+    @OneToMany(mappedBy = "qslAuthor", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<QslPost> qslPostList;
 
     public void copy(QslAuthor source){

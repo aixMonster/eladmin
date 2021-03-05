@@ -41,8 +41,6 @@ public class QslAuthorDto implements Serializable {
     /** 年龄 */
     private Integer age;
 
-    private List<QslPostDto> qslPostList;
-
     /** 创建者 */
     private String createBy;
 

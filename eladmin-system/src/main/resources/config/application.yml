@@ -19,12 +19,13 @@ spring:
       hibernate:
         ddl-auto: none
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-    open-in-view: true
+        enable_lazy_load_no_trans: true
+    open-in-view: false
 
   redis:
     #数据库索引
     database: ${REDIS_DB:0}
-    host: ${REDIS_HOST:172.24.10.49}
+    host: ${REDIS_HOST:172.25.25.108}
     port: ${REDIS_PORT:6379}
     password: ${REDIS_PWD:rootpassword}
     #连接超时时间

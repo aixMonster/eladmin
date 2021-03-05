@@ -19,6 +19,7 @@ import lombok.Data;
 import me.zhengjie.cms.author.service.dto.QslAuthorDto;
 import me.zhengjie.cms.author.service.dto.QslAuthorSmallDto;
 import me.zhengjie.cms.tag.domain.QslTag;
+import me.zhengjie.cms.tag.service.dto.QslTagSmallDto;
 
 import java.sql.Timestamp;
 import java.io.Serializable;
@@ -45,7 +46,7 @@ public class QslPostDto implements Serializable {
     /** 作者 */
     private QslAuthorSmallDto qslAuthor;
     /** 标签 */
-    private List<QslTag> qslTags;
+    private List<QslTagSmallDto> qslTags;
 
     /** 创建者 */
     private String createBy;

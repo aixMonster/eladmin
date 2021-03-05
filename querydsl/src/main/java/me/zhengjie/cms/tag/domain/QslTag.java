@@ -20,6 +20,9 @@ import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
 import me.zhengjie.cms.post.domain.QslPost;
 
@@ -36,7 +39,9 @@ import java.util.List;
 * @date 2021-02-24
 **/
 @Entity
-@Data
+@Setter
+@Getter
+@EqualsAndHashCode
 @Table(name="qsl_tag")
 public class QslTag extends BaseEntity implements Serializable {
 
